@@ -31,6 +31,8 @@ export default function HomeScreen() {
   );
 }
 
+// List Data
+
 const videoGames = [
   { id: '1', title: 'Halo' },
   { id: '2', title: 'Zelda' },
@@ -43,9 +45,11 @@ const videoGames = [
   { id: '9', title: 'Dota 2' },
   { id: '10', title: 'League of Legends' },
 ];
+
+// Styles below
+
 const styles = StyleSheet.create({
   searchBar: {
-    color: 'white',
     borderWidth: 1,
     borderRadius: 5,
     borderColor: 'grey',
@@ -56,6 +60,9 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   titleContainer: {
+    borderRadius: 5,
+    margin: 10,
+    padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
