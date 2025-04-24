@@ -3,6 +3,7 @@ import { Image, StyleSheet, Platform, ScrollView, FlatList, TextInput, Button } 
 import { Colors } from '@/constants/Colors';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { Card } from '@/components/Card';
 
 /* 
     Assignment Requirements:
@@ -51,7 +52,8 @@ export default function HomeScreen() {
             keyExtractor={(item) => item.id} 
             renderItem={({ item }) => (
               <ThemedView>
-                <ThemedText type="title">{item.title}</ThemedText>
+                <Card title={item.title} genre={item.genre} completed={item.completed}></Card>
+                {/* <ThemedText type="title">{item.title}</ThemedText> */}
               </ThemedView>
             )}>
           </FlatList>
@@ -64,26 +66,26 @@ export default function HomeScreen() {
 // List Data
 
 const videoGames = [
-  { id: '1', title: 'Halo' },
-  { id: '2', title: 'Zelda' },
-  { id: '3', title: 'Mario' },
-  { id: '4', title: 'Call of Duty' },
-  { id: '5', title: 'Dredge' },
-  { id: '6', title: 'Delta Force' },
-  { id: '7', title: 'Oblivion' },
-  { id: '8', title: 'Skyrim' },
-  { id: '9', title: 'Dota 2' },
-  { id: '10', title: 'League of Legends' },
-  { id: '11', title: 'Diablo' },
-  { id: '12', title: 'GTA' },
-  { id: '13', title: 'The Last Spell' },
-  { id: '14', title: 'Brotatoe' },
-  { id: '15', title: 'Dungeons of Dredmor' },
-  { id: '16', title: 'Apex Legends' },
-  { id: '17', title: 'Final Fantasy XIV' },
-  { id: '18', title: 'World of Warcraft' },
-  { id: '19', title: 'Slay the Spire' },
-  { id: '20', title: 'Balatro' },
+  { id: '1', title: 'Halo', genre: 'First-Person Shooter', completed: true },
+  { id: '2', title: 'Zelda', genre: 'Action-Adventure', completed: false },
+  { id: '3', title: 'Mario', genre: 'Platformer', completed: true },
+  { id: '4', title: 'Call of Duty', genre: 'First-Person Shooter', completed: false },
+  { id: '5', title: 'Dredge', genre: 'Adventure / Fishing', completed: true },
+  { id: '6', title: 'Delta Force', genre: 'Tactical Shooter', completed: false },
+  { id: '7', title: 'Oblivion', genre: 'Action RPG', completed: true },
+  { id: '8', title: 'Skyrim', genre: 'Action RPG', completed: true },
+  { id: '9', title: 'Dota 2', genre: 'MOBA', completed: false },
+  { id: '10', title: 'League of Legends', genre: 'MOBA', completed: false },
+  { id: '11', title: 'Diablo', genre: 'Action RPG / Hack and Slash', completed: true },
+  { id: '12', title: 'GTA', genre: 'Action-Adventure / Open World', completed: false },
+  { id: '13', title: 'The Last Spell', genre: 'Tactical RPG / Roguelite', completed: true },
+  { id: '14', title: 'Brotato', genre: 'Arena Shooter / Roguelite', completed: false },
+  { id: '15', title: 'Dungeons of Dredmor', genre: 'Roguelike RPG', completed: true },
+  { id: '16', title: 'Apex Legends', genre: 'Battle Royale / Hero Shooter', completed: false },
+  { id: '17', title: 'Final Fantasy XIV', genre: 'MMORPG', completed: true },
+  { id: '18', title: 'World of Warcraft', genre: 'MMORPG', completed: true },
+  { id: '19', title: 'Slay the Spire', genre: 'Deck-building Roguelike', completed: false },
+  { id: '20', title: 'Balatro', genre: 'Poker Roguelike / Deck-builder', completed: true },
 ];
 
 // Styles below
