@@ -1,6 +1,6 @@
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
 type CardProps = {
     title: string,
@@ -11,18 +11,38 @@ type CardProps = {
 export function Card(props: CardProps){
 
     return(
-        <ThemedView style={styles.container}>
-            <ThemedText type="title">{props.title}</ThemedText>
-            <ThemedText type="subtitle">{props.genre}</ThemedText>
-            <ThemedText type="subtitle">Status: {props.completed ? "Completed" : "Incomplete"}</ThemedText>
-        </ThemedView>
+        <TouchableOpacity>
+            <ThemedView style={styles.container}>
+                <ThemedText style={styles.title} type="title">{props.title}</ThemedText>
+                <ThemedText style={styles.genre} type="subtitle">{props.genre}</ThemedText>
+                <ThemedText style={styles.status} type="subtitle"> 
+                {'Status: '}
+                    <ThemedText style={{ color: props.completed ? 'green' : 'red' }} type="subtitle"> 
+                        {props.completed ? "Completed" : "Incomplete"}
+                    </ThemedText>
+                </ThemedText>
+            </ThemedView>
+        </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
+        flex:1,
         borderWidth: 2,
-        borderColor: 'blue',
+        borderColor: 'darkblue',
         borderRadius: 5,
+        padding: 5,
+        margin: 5,
+    },
+    title: {
+        color: 'blue',
+        textAlign: 'center'
+    },
+    genre: {
+        textAlign: 'center'
+    },
+    status: {
+        textAlign: 'center'
     }
 });
