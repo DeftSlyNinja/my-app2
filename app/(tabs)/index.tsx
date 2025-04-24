@@ -1,3 +1,4 @@
+import { useState } from 'react' 
 import { Image, StyleSheet, Platform, ScrollView, FlatList, TextInput, Button } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import { ThemedText } from '@/components/ThemedText';
@@ -15,6 +16,18 @@ import { ThemedView } from '@/components/ThemedView';
 */
 
 export default function HomeScreen() {
+
+  const [query, setQuery] = useState('');
+  const [filteredGames, setFilteredGames] = useState(videoGames);
+
+  const handleSearch = (query: string) => {
+    setQuery(query);
+    const filteredData = videoGames.filter((game) => 
+      game.title.toLowerCase().includes(query.toLowerCase()));
+    setFilteredGames(filteredData)
+  };
+
+
   return (
     <ThemedView style={styles.container}>
       <ThemedView style={styles.titleContainer}>
@@ -23,14 +36,18 @@ export default function HomeScreen() {
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.inputContainer}>
-        <TextInput style={styles.searchBar} placeholder='Search for game title...'></TextInput>
-
-        <Button title="Submit"></Button>
+        <TextInput 
+          style={styles.searchBar}
+          onChangeText={handleSearch}
+          value={query}
+          placeholder='Search for game title...'>  
+        </TextInput>
+        <Button title="Not Implemented"></Button>
       </ThemedView>
       <ScrollView style={styles.scrollContainer}>
         <ThemedView style={styles.listContainer}>
           <FlatList 
-            data={videoGames} 
+            data={filteredGames} 
             keyExtractor={(item) => item.id} 
             renderItem={({ item }) => (
               <ThemedView>
