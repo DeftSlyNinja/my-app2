@@ -4,16 +4,21 @@ import { Colors } from '@/constants/Colors';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Card } from '@/components/Card';
+import { Link } from 'expo-router'
+import { Box } from '@/components/ui/box';
+import { Input, InputField } from '@/components/ui/input';
+import { Heading } from '@/components/ui/heading';
 
-/* 
-    Assignment Requirements:
-    - Text Component
-    - TextInput Component
-    - Button (Optional)
-    - ScrollView Component
-    - FlatList Component
-    - Style w/ Flexbox
-    - Optimize for both small and large screens
+/*
+  Assignment 3 Requirements:
+  1. Implement Navigation
+    - Clicking an item should navigate to a detail page.
+  2. Pass Data Between Screens:
+    - When an item is clicked, pass details to new screen using navigation params.
+    - Display passed data on detail screen.
+  3. Mangage state w/ Hooks
+    - useState for local state management.
+    - useContext to store and acces a shared list of tasks globally.
 */
 
 export default function HomeScreen() {
@@ -30,36 +35,25 @@ export default function HomeScreen() {
 
 
   return (
-    <ThemedView style={styles.container}>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">
-          My Game Library
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.inputContainer}>
-        <TextInput 
-          style={styles.searchBar}
-          onChangeText={handleSearch}
-          value={query}
-          placeholder='Search for game title...'>  
-        </TextInput>
-        <Button title="Not Implemented"></Button>
-      </ThemedView>
-      <ScrollView style={styles.scrollContainer}>
-        <ThemedView style={styles.listContainer}>
-          <FlatList 
-            data={filteredGames} 
-            keyExtractor={(item) => item.id} 
-            renderItem={({ item }) => (
-              <ThemedView>
-                <Card title={item.title} genre={item.genre} completed={item.completed}></Card>
-                {/* <ThemedText type="title">{item.title}</ThemedText> */}
-              </ThemedView>
-            )}>
-          </FlatList>
-        </ThemedView>
-      </ScrollView>
-    </ThemedView>
+    <Box className='flex-1 p-4'>
+      <Heading size='3xl' className='self-center'>My Game Library</Heading>
+        <Input variant='outline' size='lg' className='mt-2 mb-2'>
+          <InputField
+            placeholder='Search game library...'
+            value={query}
+            onChangeText={handleSearch}
+          />
+        </Input>
+        <FlatList 
+          data={filteredGames} 
+          keyExtractor={(item) => item.id} 
+          renderItem={({ item }) => (
+
+              <Card title={item.title} genre={item.genre} completed={item.completed}></Card>
+
+          )}>
+        </FlatList>
+    </Box>
   );
 }
 
@@ -87,56 +81,3 @@ const videoGames = [
   { id: '19', title: 'Slay the Spire', genre: 'Deck-building Roguelike', completed: false },
   { id: '20', title: 'Balatro', genre: 'Poker Roguelike / Deck-builder', completed: true },
 ];
-
-// Styles below
-
-const styles = StyleSheet.create({
-  searchBar: {
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: 'grey',
-    margin: 10
-  },
-  container: {
-
-    // borderColor: 'red',
-    // borderWidth:5,
-
-    flex: 1,
-    padding: 16,
-  },
-  listContainer: {
-
-    // borderColor: 'red',
-    // borderWidth:5,
-
-    flex: 1,
-    borderRadius: 5,
-    margin: 10,
-    padding: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  titleContainer: {
-
-    // borderColor: 'red',
-    // borderWidth:5,
-
-    // flex:1,
-    alignItems: 'center'
-  },
-  inputContainer: {
-
-    // borderColor: 'red',
-    // borderWidth:5,
-
-    // flex:1,
-  },
-  scrollContainer: {
-    // borderColor: 'red',
-    // borderWidth:5,
-
-    flex:4,
-  }
-});
