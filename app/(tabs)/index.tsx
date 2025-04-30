@@ -1,13 +1,15 @@
 import { useState } from 'react' 
-import { Image, StyleSheet, Platform, ScrollView, FlatList, TextInput, Button } from 'react-native';
+import { Image, StyleSheet, Platform, ScrollView, FlatList, TextInput, Button, TouchableOpacity } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { Card } from '@/components/Card';
+// import { Card } from '@/components/Card';
+import { Card } from '@/components/ui/card'
 import { Link } from 'expo-router'
 import { Box } from '@/components/ui/box';
 import { Input, InputField } from '@/components/ui/input';
 import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
 
 /*
   Assignment 3 Requirements:
@@ -48,15 +50,19 @@ export default function HomeScreen() {
           data={filteredGames} 
           keyExtractor={(item) => item.id} 
           renderItem={({ item }) => (
-
-              <Card title={item.title} genre={item.genre} completed={item.completed}></Card>
-
+            <TouchableOpacity>
+              <Card size='md' variant='elevated' className='m-3 shadow-lg'>
+                <Heading size='xl'>{item.title}</Heading>
+                <Text italic={true}>{item.genre}</Text>
+                <Text className={item.completed ? 'text-green-600' : 'text-red-600'}>{item.completed ? "Completed" : "Incomplete"}</Text>
+              </Card>
+            </TouchableOpacity>
           )}>
         </FlatList>
     </Box>
   );
 }
-
+// <Card title={item.title} genre={item.genre} completed={item.completed}></Card>
 // List Data
 
 const videoGames = [
