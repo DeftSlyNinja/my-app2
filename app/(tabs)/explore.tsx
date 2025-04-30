@@ -11,7 +11,10 @@ import { Box } from '@/components/ui/box';
 export default function TabTwoScreen() {
   return (
     <Box>
-      
+      <Image 
+        source={require('assets/images/react-logo.png')}
+        className='self-center'
+      ></Image>
     </Box>
   );
 }

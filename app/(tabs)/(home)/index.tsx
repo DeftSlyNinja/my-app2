@@ -3,13 +3,13 @@ import { Image, StyleSheet, Platform, ScrollView, FlatList, TextInput, Button, T
 import { Colors } from '@/constants/Colors';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-// import { Card } from '@/components/Card';
 import { Card } from '@/components/ui/card'
-import { Link } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 import { Box } from '@/components/ui/box';
 import { Input, InputField } from '@/components/ui/input';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
+import { Path } from 'react-native-svg';
 
 /*
   Assignment 3 Requirements:
@@ -27,6 +27,7 @@ export default function HomeScreen() {
 
   const [query, setQuery] = useState('');
   const [filteredGames, setFilteredGames] = useState(videoGames);
+  const router = useRouter();
 
   const handleSearch = (query: string) => {
     setQuery(query);
@@ -34,6 +35,8 @@ export default function HomeScreen() {
       game.title.toLowerCase().includes(query.toLowerCase()));
     setFilteredGames(filteredData)
   };
+
+
 
 
   return (
@@ -49,20 +52,31 @@ export default function HomeScreen() {
         <FlatList 
           data={filteredGames} 
           keyExtractor={(item) => item.id} 
-          renderItem={({ item }) => (
-            <TouchableOpacity>
-              <Card size='md' variant='elevated' className='m-3 shadow-lg'>
-                <Heading size='xl'>{item.title}</Heading>
-                <Text italic={true}>{item.genre}</Text>
-                <Text className={item.completed ? 'text-green-600' : 'text-red-600'}>{item.completed ? "Completed" : "Incomplete"}</Text>
-              </Card>
-            </TouchableOpacity>
-          )}>
+          renderItem={({ item }) => {
+            
+            const handleLinkPress = () => {
+                router.push({
+                    pathname: '/(tabs)/(home)/[title]',
+                    params: { title: item.title},
+                })
+              }
+
+            return(
+                <TouchableOpacity onPress={handleLinkPress}>
+                <Card size='md' variant='elevated' className='m-3 shadow-lg'>
+                    <Heading size='xl'>{item.title}</Heading>
+                    <Text italic={true}>{item.genre}</Text>
+                    <Text className={item.completed ? 'text-green-600' : 'text-red-600'}>{item.completed ? "Completed" : "Incomplete"}</Text>
+                </Card>
+                </TouchableOpacity>
+                )
+            }
+          }>
         </FlatList>
     </Box>
   );
 }
-// <Card title={item.title} genre={item.genre} completed={item.completed}></Card>
+
 // List Data
 
 const videoGames = [

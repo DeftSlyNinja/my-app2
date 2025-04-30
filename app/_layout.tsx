@@ -8,24 +8,24 @@ import { StatusBar } from 'expo-status-bar';
 import { createContext, useEffect, useState } from 'react';
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
 
-type ThemeContextType = {
-  colorMode: ModeType;
-  toggleColorMode: (mode: ModeType) => void;
-}
-
-export const ThemeContext = createContext<ThemeContextType>({
-  colorMode: "light",
-  toggleColorMode: () => {},
-})
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
+type ThemeContextType = {
+  colorMode: ModeType;
+  toggleColorMode: () => void;
+};
+
+export const ThemeContext = createContext<ThemeContextType>({
+  colorMode: "light",
+  toggleColorMode: () => {},
+});
+
 export default function RootLayout() {
   const [colorMode, setColorMode] = useState<ModeType>("light");
-  // const colorScheme = useColorScheme();
+
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
