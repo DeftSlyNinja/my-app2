@@ -10,6 +10,7 @@ import { Input, InputField } from '@/components/ui/input';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { Path } from 'react-native-svg';
+import { Divider } from '@/components/ui/divider';
 
 /*
   Assignment 3 Requirements:
@@ -40,9 +41,9 @@ export default function HomeScreen() {
 
 
   return (
-    <Box className='flex-1 p-4'>
+    <Box className='flex-1 p-4 bg-white dark:bg-zinc-700'>
       <Heading size='3xl' className='self-center'>My Game Library</Heading>
-        <Input variant='outline' size='lg' className='mt-2 mb-2'>
+        <Input variant='outline' size='lg' className='mt-2 mb-2 bg-white'>
           <InputField
             placeholder='Search game library...'
             value={query}
@@ -57,17 +58,18 @@ export default function HomeScreen() {
             const handleLinkPress = () => {
                 router.push({
                     pathname: '/(tabs)/(home)/[title]',
-                    params: { title: item.title},
+                    params: { title: item.title },
                 })
               }
 
             return(
                 <TouchableOpacity onPress={handleLinkPress}>
-                <Card size='md' variant='elevated' className='m-3 shadow-lg'>
+                  <Card size='md' variant='elevated' className='m-3 shadow-lg'>
                     <Heading size='xl'>{item.title}</Heading>
-                    <Text italic={true}>{item.genre}</Text>
-                    <Text className={item.completed ? 'text-green-600' : 'text-red-600'}>{item.completed ? "Completed" : "Incomplete"}</Text>
-                </Card>
+                    <Divider></Divider>
+                    <Text italic={true}> - {item.genre}</Text>
+                    <Text className={item.completed ? 'text-green-600' : 'text-red-600'}> - {item.completed ? "Completed" : "Incomplete"}</Text>
+                  </Card>
                 </TouchableOpacity>
                 )
             }
@@ -79,7 +81,7 @@ export default function HomeScreen() {
 
 // List Data
 
-const videoGames = [
+export const videoGames = [
   { id: '1', title: 'Halo', genre: 'First-Person Shooter', completed: true },
   { id: '2', title: 'Zelda', genre: 'Action-Adventure', completed: false },
   { id: '3', title: 'Mario', genre: 'Platformer', completed: true },

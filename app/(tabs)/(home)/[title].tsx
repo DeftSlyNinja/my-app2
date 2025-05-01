@@ -1,5 +1,6 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import { videoGames } from '.';
 
 export default function TitlePage() {
   const router = useRouter();
