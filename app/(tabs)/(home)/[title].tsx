@@ -16,8 +16,7 @@ export default function TitlePage() {
   } = videoGame || {};
 
   return (
-
-    <SafeAreaView className='flex-1 bg-white dark:bg-zinc-700'>
+  <SafeAreaView className='flex-1 bg-white dark:bg-zinc-700'>
     <Box className='p-4 m-4 dark:bg-[#151718] bg-white max-h-screen-safe items-center rounded-md'>
       <Stack.Screen
         options={{
@@ -34,9 +33,5 @@ export default function TitlePage() {
       <Button title="Go Back" onPress={() => router.back()} />
     </Box>
   </SafeAreaView>
-    // <View className="flex-1 justify-center items-center p-4">
-    //   <Text className="text-xl font-bold mb-4">Dynamic Page: {title}</Text>
-    //   <Button title="Go Back" onPress={() => router.back()} />
-    // </View>
   );
 }

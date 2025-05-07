@@ -13,17 +13,6 @@ import { Path } from 'react-native-svg';
 import { Divider } from '@/components/ui/divider';
 import { useVideoGameContext } from '@/components/ui/games-context-provider';
 
-/*
-  Assignment 3 Requirements:
-  1. Implement Navigation
-    - Clicking an item should navigate to a detail page.
-  2. Pass Data Between Screens:
-    - When an item is clicked, pass details to new screen using navigation params.
-    - Display passed data on detail screen.
-  3. Mangage state w/ Hooks
-    - useState for local state management.
-    - useContext to store and acces a shared list of tasks globally.
-*/
 
 export default function HomeScreen() {
 
