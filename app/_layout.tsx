@@ -7,6 +7,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { createContext, useEffect, useState } from 'react';
 import 'react-native-reanimated';
+import { VideoGameProvider } from '@/components/ui/games-context-provider';
 
 
 
@@ -47,11 +48,13 @@ export default function RootLayout() {
   return (
     <GluestackUIProvider mode={colorMode}>
       <ThemeContext.Provider value={{colorMode, toggleColorMode}}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
+        <VideoGameProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </VideoGameProvider>
       </ThemeContext.Provider>
     </GluestackUIProvider>
   );
