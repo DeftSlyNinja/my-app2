@@ -2,7 +2,7 @@ import { createContext, useState, useContext } from 'react';
 import videoGameData from '@/data/videogames.json';
 
 export type VideoGame = {
-    id: number;
+    id: any;
     title: string;
     genre: string;
     completed: boolean;
