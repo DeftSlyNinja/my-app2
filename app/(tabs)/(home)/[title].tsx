@@ -1,14 +1,16 @@
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { View, Text, Button, SafeAreaView } from 'react-native';
-import videoGameData from '@/data/videogames.json';
+// import videoGameData from '@/data/videogames.json';
 import { Box } from '@/components/ui/box';
 import { Heading } from '@/components/ui/heading';
 import { VStack } from '@/components/ui/vstack';
+import { useVideoGameContext } from '@/components/ui/games-context-provider';
 
 export default function TitlePage() {
   const router = useRouter();
   const { title } = useLocalSearchParams<{title: string}>();
-  const videoGame = videoGameData.find((item) => item.title === title);
+  const { videoGames } = useVideoGameContext();
+  const videoGame = videoGames.find((item) => item.title === title);
   const {
     id,
     genre,

@@ -1,6 +1,6 @@
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { useNavigation } from 'expo-router';
+import { useNavigation, useLocalSearchParams } from 'expo-router';
 import { useVideoGameContext } from '@/components/ui/games-context-provider';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
@@ -8,6 +8,7 @@ import { Input, InputField } from '@/components/ui/input';
 import { Button, ButtonText } from '@/components/ui/button';
 import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox';
 import { CheckIcon } from '@/components/ui/icon';
+import { useAddGame } from '@/hooks/useAddGame';
 
 const VideoGameSchema = Yup.object().shape({
     title: Yup.string().required("Title is required"),
@@ -17,8 +18,22 @@ const VideoGameSchema = Yup.object().shape({
 
 const AddVideoGame = () => {
     const navigation = useNavigation();
-    const { addVideoGame } = useVideoGameContext();
+    const { id = ''} = useLocalSearchParams<{id: string}>()
+    const { addVideoGame, videoGames, updateVideoGame } = useVideoGameContext();
+    const editVideoGame = videoGames.find((item) => item.id === id);
 
+    const initialValues = editVideoGame
+        ? {
+            title: editVideoGame.title,
+            genre: editVideoGame.genre,
+            completed: editVideoGame.completed,
+        }
+        : {
+            title: '',
+            genre: '',
+            completed: false,
+        };
+    
     return (
         <Box className="flex-1 p-4 dark:bg-neutral-950">
             <Formik
@@ -29,12 +44,20 @@ const AddVideoGame = () => {
                 }}
                 validationSchema={VideoGameSchema}
                 onSubmit={(values, { resetForm }) => {
-                    addVideoGame({
-                        id: Date.now().toString(),
-                        title: values.title,
-                        genre: values.genre,
-                        completed: values.completed
-                    });
+                    if (editVideoGame) {
+                        updateVideoGame({
+                            ...editVideoGame,
+                            title: values.title,
+                            genre: values.genre,
+                            completed: values.completed
+                        });
+                    } else {
+                        addVideoGame({
+                            title: values.title,
+                            genre: values.genre,
+                            completed: values.completed
+                        });
+                    }
 
                     resetForm();
                     
