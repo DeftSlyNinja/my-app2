@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react' 
 import { Image, StyleSheet, Platform, ScrollView, FlatList, TextInput, Button, TouchableOpacity } from 'react-native';
 import { Colors } from '@/constants/Colors';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import { Card } from '@/components/ui/card'
-import { Link, useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
 import { Box } from '@/components/ui/box';
 import { Input, InputField } from '@/components/ui/input';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
-import { Path } from 'react-native-svg';
 import { Divider } from '@/components/ui/divider';
 import { useVideoGameContext } from '@/components/ui/games-context-provider';
 
