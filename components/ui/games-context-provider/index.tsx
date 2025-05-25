@@ -55,12 +55,12 @@ export const VideoGameProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     if (data && !isFetching) {
-      console.log("Fetched data: ", data);
+      // console.log("Fetched data: ", data);
       setVideoGames(data as VideoGame[]);
     }
-    if (isFetching) {
-      console.log("Fetching data...");
-    }
+    // if (isFetching) {
+    //   console.log("Fetching data...");
+    // }
   }, [data, isFetching]);
 
   return (
