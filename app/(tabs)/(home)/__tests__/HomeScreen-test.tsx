@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react-native";
+import { fireEvent, render, screen } from "@/utils/test-utils";
 import HomeScreen from "..";
 import mockData from "../../../../data/videogames.json";
 import { useGetGames } from "@/hooks/useGetGames";
@@ -22,22 +22,11 @@ describe("HomeScreen", () => {
     jest.clearAllMocks();
   });
 
-  const queryClient = new QueryClient();
-
   // Smaller sample since my data size is large
   const initialGames = mockData.slice(0, 5);
-  const customRender = () => {
-    return render(
-      <QueryClientProvider client={queryClient}>
-        <VideoGameProvider>
-          <HomeScreen />
-        </VideoGameProvider>
-      </QueryClientProvider>,
-    );
-  };
 
   test("Renders heading and search input", () => {
-    customRender();
+    render(<HomeScreen />);
 
     expect(
       screen.getByRole("header", { name: /my game library/i }),
@@ -49,7 +38,7 @@ describe("HomeScreen", () => {
   });
 
   test("Renders game data and filters by search", () => {
-    customRender();
+    render(<HomeScreen />);render(<HomeScreen />);
 
     // Checks if first 5 games are rendered
     initialGames.forEach((game) => {
@@ -75,7 +64,7 @@ describe("HomeScreen", () => {
 
   test("Renders updated games with filtering", async () => {
     const mockQuery = "on";
-    customRender();
+    render(<HomeScreen />);
 
     initialGames.forEach((game) => {
       expect(screen.getByText(game.title)).toBeOnTheScreen();
