@@ -2,8 +2,6 @@ import { fireEvent, render, screen } from "@/utils/test-utils";
 import HomeScreen from "..";
 import mockData from "../../../../data/videogames.json";
 import { useGetGames } from "@/hooks/useGetGames";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { VideoGameProvider } from "@/components/ui/games-context-provider";
 
 // Mock the useGetGames hook
 jest.mock("@/hooks/useGetGames", () => ({
@@ -38,7 +36,8 @@ describe("HomeScreen", () => {
   });
 
   test("Renders game data and filters by search", () => {
-    render(<HomeScreen />);render(<HomeScreen />);
+    render(<HomeScreen />);
+    render(<HomeScreen />);
 
     // Checks if first 5 games are rendered
     initialGames.forEach((game) => {
