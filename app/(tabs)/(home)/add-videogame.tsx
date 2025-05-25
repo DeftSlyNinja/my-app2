@@ -13,7 +13,6 @@ import {
   CheckboxIcon,
 } from "@/components/ui/checkbox";
 import { CheckIcon } from "@/components/ui/icon";
-import { useAddGame } from "@/hooks/useAddGame";
 
 const VideoGameSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
@@ -42,11 +41,7 @@ const AddVideoGame = () => {
   return (
     <Box className="flex-1 p-4 dark:bg-neutral-950">
       <Formik
-        initialValues={{
-          title: "",
-          genre: "",
-          completed: false,
-        }}
+        initialValues={initialValues}
         validationSchema={VideoGameSchema}
         onSubmit={(values, { resetForm }) => {
           if (editVideoGame) {

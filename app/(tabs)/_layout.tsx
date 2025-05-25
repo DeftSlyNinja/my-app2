@@ -4,8 +4,6 @@ import { Platform } from "react-native";
 import { HapticTab } from "@/components/HapticTab";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
-import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
 import { Button, ButtonText } from "@/components/ui/button";
 import { ThemeContext } from "../_layout";
 import { Box } from "@/components/ui/box";
@@ -14,7 +12,6 @@ import { EditIcon } from "@/components/ui/icon";
 
 export default function TabLayout() {
   const router = useRouter();
-  const colorScheme = useColorScheme();
   const { toggleColorMode } = useContext(ThemeContext);
 
   return (

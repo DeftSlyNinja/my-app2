@@ -1,20 +1,6 @@
 import { useState } from "react";
-import {
-  Image,
-  StyleSheet,
-  Platform,
-  ScrollView,
-  FlatList,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from "react-native";
-import { Colors } from "@/constants/Colors";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-// import { Card } from '@/components/Card';
+import { FlatList, TouchableOpacity } from "react-native";
 import { Card } from "@/components/ui/card";
-import { Link } from "expo-router";
 import { Box } from "@/components/ui/box";
 import { Input, InputField } from "@/components/ui/input";
 import { Heading } from "@/components/ui/heading";

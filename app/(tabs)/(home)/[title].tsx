@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
-import { View, Text, Button, SafeAreaView } from "react-native";
+import { Text, Button, SafeAreaView } from "react-native";
 // import videoGameData from '@/data/videogames.json';
 import { Box } from "@/components/ui/box";
 import { Heading } from "@/components/ui/heading";
@@ -11,7 +11,7 @@ export default function TitlePage() {
   const { title } = useLocalSearchParams<{ title: string }>();
   const { videoGames } = useVideoGameContext();
   const videoGame = videoGames.find((item) => item.title === title);
-  const { id, genre, completed } = videoGame || {};
+  const { genre, completed } = videoGame || {};
 
   return (
     <SafeAreaView className="flex-1 bg-white dark:bg-zinc-700">

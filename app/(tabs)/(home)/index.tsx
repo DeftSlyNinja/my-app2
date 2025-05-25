@@ -1,15 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Image,
-  StyleSheet,
-  Platform,
-  ScrollView,
-  FlatList,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from "react-native";
-import { Colors } from "@/constants/Colors";
+import { FlatList, TouchableOpacity } from "react-native";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "expo-router";
 import { Box } from "@/components/ui/box";
@@ -42,6 +32,7 @@ export default function HomeScreen() {
       );
       setFilteredGames(filtered);
     }
+    // eslint-disable-next-line
   }, [videoGames]);
 
   return (

@@ -8,7 +8,7 @@ type CardProps = {
   completed: boolean;
 };
 
-export function Card(props: CardProps) {
+export default function Card(props: CardProps) {
   return (
     <TouchableOpacity>
       <ThemedView style={styles.container}>
