@@ -1,14 +1,21 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
 import "@/global.css";
-import { GluestackUIProvider, ModeType } from "@/components/ui/gluestack-ui-provider";
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { createContext, useEffect, useState } from 'react';
-import 'react-native-reanimated';
-import { VideoGameProvider } from '@/components/ui/games-context-provider';
-import { supabase } from '@/utils/supabase'
+import {
+  GluestackUIProvider,
+  ModeType,
+} from "@/components/ui/gluestack-ui-provider";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
+import { createContext, useEffect, useState } from "react";
+import "react-native-reanimated";
+import { VideoGameProvider } from "@/components/ui/games-context-provider";
+import { supabase } from "@/utils/supabase";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppState } from "react-native";
 
@@ -32,20 +39,20 @@ const queryClient = new QueryClient();
 // the app is in the foreground. When this is added, you will continue to receive
 // `onAuthStateChange` events with the `TOKEN_REFRESHED` or `SIGNED_OUT` event
 // if the user's session is terminated. This should only be registered once.
-AppState.addEventListener('change', (state) => {
-  if (state === 'active') {
-    supabase.auth.startAutoRefresh()
+AppState.addEventListener("change", (state) => {
+  if (state === "active") {
+    supabase.auth.startAutoRefresh();
   } else {
-    supabase.auth.stopAutoRefresh()
+    supabase.auth.stopAutoRefresh();
   }
-})
+});
 
 export default function RootLayout() {
   const [colorMode, setColorMode] = useState<ModeType>("light");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   useEffect(() => {
@@ -63,8 +70,8 @@ export default function RootLayout() {
       }
 
       const { data, error } = await supabase.auth.signInWithPassword({
-        email: 'test@dev.com',
-        password: 'testtest',
+        email: "test@dev.com",
+        password: "testtest",
       });
 
       if (error) {
@@ -89,7 +96,7 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <GluestackUIProvider mode={colorMode}>
-        <ThemeContext.Provider value={{colorMode, toggleColorMode}}>
+        <ThemeContext.Provider value={{ colorMode, toggleColorMode }}>
           <VideoGameProvider>
             <Stack>
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
